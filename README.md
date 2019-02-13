@@ -1,4 +1,4 @@
-# Drupal 8 Custom Boilerplate 
+# Drupal 8 Migration Boilerplate 
 
 Use this module and the directions below as a starting point to easily get your Drupal 6/7 sites into Drupal 8.
 
@@ -17,3 +17,5 @@ lando drush config-export --destination=/tmp/migrate
 lando ssh
 cp /tmp/migrate/migrate_plus.* /app/path/to/migration_boilerplate/unused_config
 ```
+
+7. Run ```lando drush ms``` to make sure the configs made it over.
