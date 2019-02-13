@@ -1,0 +1,13 @@
+{
+  "name": "drupal/migration_boilerplate",
+  "type": "drupal-module",
+  "description": "Drupal 8 Migration Boilerplate Code",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/thinktandem/migration_boilerplate",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/thinktandem/migration_boilerplate/issues/",
+  },
+  "require": { }
+}

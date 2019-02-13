@@ -1,0 +1,186 @@
+<?php
+
+/**
+ * @file
+ * Contains migration_boilerplate.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\MigrateSkipRowException;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Row;
+
+/**
+ * Implements hook_help().
+ */
+function migration_boilerplate_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the rmc_migration module.
+    case 'help.page.migration_boilerplate':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Drupal 8 Migration Boilerplate Code') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+
+  // Content Types we are not importing / skipping.
+  $skip_types = [
+    // Put stuff here.
+  ];
+
+  // Fields to skip for now
+  $skip_fields = [
+    // Put stuff here.
+  ];
+
+  // Entity types to skip for now.
+  $entity_skip = [
+    // Put stuff here.
+  ];
+
+  // Vocab Skip
+  $vocab_skip = [
+    // Put stuff here.
+  ];
+
+  // Skip vocab.
+  if (in_array($row->getSourceProperty('machine_name'), $vocab_skip)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Skip content types.
+  if (in_array($row->getSourceProperty('bundle'), $skip_types)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Skip content types.
+  if (in_array($row->getSourceProperty('type'), $skip_types)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Skip fields.
+  if (in_array($row->getSourceProperty('field_name'), $skip_fields)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Skip entity types.
+  if (in_array($row->getSourceProperty('instances')[0]['entity_type'], $entity_skip)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Skip entity types.
+  if (in_array($row->getSourceProperty('entity_type'), $entity_skip)) {
+    // This makes it so we don't need to reprocess the row.
+    throw new MigrateSkipRowException('', TRUE);
+  }
+
+  // Do various tasks based on the migration id.
+  switch ($migration->id()) {
+
+    case 'upgrade_d7_field':
+      // Move a field to a new type / bundle example.
+      $instances = $row->getSourceProperty('instances');
+      switch ($instances[0]['bundle']) {
+        case 'OLD_BUNDLE':
+          $instances[0]['bundle'] = 'NEW_BUNDLE'; // Merge fields to person type.
+          $row->setSourceProperty('instances', $instances);
+          break;
+      }
+      break;
+
+    case 'upgrade_d7_node_type':
+      // Change the content type name example.
+      switch ($row->getSourceProperty('type')) {
+        case 'OLD_NAME':
+          $row->setSourceProperty('name', 'NEW_NAME');
+          break;
+      }
+      break;
+
+    case 'upgrade_d7_field_instance':
+    case 'upgrade_d7_field_formatter_settings':
+    case 'upgrade_d7_field_instance_widget_settings':
+
+      // Move a field to a new type / bundle example continued.
+      $instances = $row->getSourceProperty('instances');
+      switch ($instances[0]['bundle']) {
+        case 'OLD_BUNDLE':
+          $instances[0]['bundle'] = 'NEW_BUNDLE'; // Merge fields to person type.
+          $row->setSourceProperty('instances', $instances);
+          break;
+      }
+
+    // Move a field to a new type / bundle example continued.
+      $bundle = $row->getSourceProperty('bundle');
+      switch ($bundle) {
+        case 'OLD_BUNDLE':
+          $row->setSourceProperty('bundle', 'NEW_BUNDLE'); // Merge fields to person type.
+          break;
+      }
+
+      if ($migration->id() === 'upgrade_d7_field_formatter_settings') {
+        // Some typical legacy formatter type conversions.
+        $formatter = $row->getSourceProperty('formatter');
+        switch ($formatter['type']) {
+          case 'taxonomy_term_reference_plain':
+            $formatter['type'] = 'entity_reference_label';
+            $row->setSourceProperty('formatter', $formatter);
+            break;
+
+          case 'text_plain':
+            $formatter['type'] = 'basic_string';
+            $row->setSourceProperty('formatter', $formatter);
+            break;
+
+          case 'link_plain':
+            $formatter['type'] = 'link_default';
+            $row->setSourceProperty('formatter', $formatter);
+            break;
+
+          case 'file_rendered':
+            $formatter['type'] = 'entity_reference_entity_view';
+            $row->setSourceProperty('formatter', $formatter);
+            break;
+
+          case 'rss_enclosure':
+            $formatter['type'] = 'file_rss_enclosure';
+            $row->setSourceProperty('formatter', $formatter);
+            break;
+        }
+      }
+
+      if ($migration->id() === 'upgrade_d7_field_instance_widget_settings') {
+        // Adjust a widget type example.
+        $widget = $row->getSourceProperty('widget');
+        switch ($widget['type']) {
+          case 'inline_entity_form':
+            $widget['type'] = 'inline_entity_form_simple';
+            $row->setSourceProperty('widget', $widget);
+            break;
+        }
+      }
+      break;
+
+    case 'upgrade_d7_node_NAME':
+      $title = $row->getSourceProperty('title');
+      if (stripos($title, 'sad') !== FALSE) {
+        // Skip old sad posts
+        throw new MigrateSkipRowException('', TRUE);
+      }
+      break;
+  }
+}
