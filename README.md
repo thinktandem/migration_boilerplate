@@ -9,7 +9,15 @@ Use this module and the directions below as a starting point to easily get your 
 3. Export your Drupal 7 DB with ```lando db-export dump.sql.gz```
 4. Copy the settings.local.php file in this repo to your Drupal 8 sites/default folder.
 5. Import the Drupal 7 DB into the Drupal 8 Site with ```lando db-import --host=d7db --user=drupal7db dump.sql.gz```
-6. Run the following commands in your D8 site:
+6. Enable this module & run this in your Drupal 8 project root:
+
+```bash
+lando composer require 'drupal/migrate_plus:^4.1'
+lando composer require 'drupal/migrate_tools:^4.1'
+lando composer require 'drupal/migrate_upgrade:^3.0'
+```
+
+7. Run the following commands in your D8 site:
 
 ```bash
 lando drush migrate-upgrade --legacy-db-key=migrate --configure-only
@@ -18,4 +26,4 @@ lando ssh
 cp /tmp/migrate/migrate_plus.* /app/path/to/migration_boilerplate/unused_config
 ```
 
-7. Run ```lando drush ms``` to make sure the configs made it over.
+8. Run ```lando drush ms``` to make sure the configs made it over.
