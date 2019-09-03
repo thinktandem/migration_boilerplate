@@ -12,8 +12,8 @@ Use this module and the directions below as a starting point to easily get your 
 6. Run this in your Drupal 8 project root:
 
 ```bash
-lando composer require 'drupal/migrate_plus:^4.1'
-lando composer require 'drupal/migrate_tools:^4.1'
+lando composer require 'drupal/migrate_plus:^4.2'
+lando composer require 'drupal/migrate_tools:^4.3'
 lando composer require 'drupal/migrate_upgrade:^3.0'
 ```
 
