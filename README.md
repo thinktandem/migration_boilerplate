@@ -23,7 +23,7 @@ lando composer require 'drupal/migrate_upgrade:^3.0'
 ```bash
 lando drush migrate-upgrade --legacy-db-key=migrate --configure-only
 lando drush config-export --destination=/tmp/migrate
-lando ssh
+lando ssh -s appserver -u root
 cp /tmp/migrate/migrate_plus.* /app/path/to/migration_boilerplate/unused_config
 ```
 
