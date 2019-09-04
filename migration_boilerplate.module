@@ -16,7 +16,7 @@ use Drupal\migrate\Row;
  */
 function migration_boilerplate_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
-    // Main module help for the rmc_migration module.
+    // Main module help for the migration_boilerplate module.
     case 'help.page.migration_boilerplate':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
