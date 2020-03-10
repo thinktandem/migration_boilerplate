@@ -7,7 +7,7 @@
   "homepage": "https://github.com/thinktandem/migration_boilerplate",
   "minimum-stability": "dev",
   "support": {
-    "issues": "https://github.com/thinktandem/migration_boilerplate/issues/",
+    "issues": "https://github.com/thinktandem/migration_boilerplate/issues/"
   },
   "require": { }
 }
