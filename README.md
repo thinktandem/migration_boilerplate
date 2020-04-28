@@ -25,6 +25,9 @@ lando drush migrate-upgrade --legacy-db-key=migrate --configure-only
 lando drush config-export --destination=/tmp/migrate
 lando ssh -s appserver -u root
 cp /tmp/migrate/migrate_plus.* /app/path/to/migration_boilerplate/unused_config
+chown -R www-data:www-data /app/path/to/migration_boilerplate/unused_config
+exit
+lando drush cim -y
 ```
 
 9. Run ```lando drush ms``` to make sure the configs made it over.
