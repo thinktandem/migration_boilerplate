@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * Example for adding a second database below.
+ */
+
 $databases['default']['default'] = [
   'database' => 'drupal8',
   'username' => 'drupal8',
