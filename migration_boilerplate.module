@@ -37,7 +37,7 @@ function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterf
     // Put stuff here.
   ];
 
-  // Fields to skip for now
+  // Fields to skip for now.
   $skip_fields = [
     // Put stuff here.
   ];
@@ -47,7 +47,7 @@ function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterf
     // Put stuff here.
   ];
 
-  // Vocab Skip
+  // Vocab Skip.
   $vocab_skip = [
     // Put stuff here.
   ];
@@ -96,7 +96,8 @@ function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterf
       $instances = $row->getSourceProperty('instances');
       switch ($instances[0]['bundle']) {
         case 'OLD_BUNDLE':
-          $instances[0]['bundle'] = 'NEW_BUNDLE'; // Merge fields to person type.
+          $instances[0]['bundle'] = 'NEW_BUNDLE';
+          // Merge fields to person type.
           $row->setSourceProperty('instances', $instances);
           break;
       }
@@ -119,16 +120,18 @@ function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterf
       $instances = $row->getSourceProperty('instances');
       switch ($instances[0]['bundle']) {
         case 'OLD_BUNDLE':
-          $instances[0]['bundle'] = 'NEW_BUNDLE'; // Merge fields to person type.
+          $instances[0]['bundle'] = 'NEW_BUNDLE';
+          // Merge fields to person type.
           $row->setSourceProperty('instances', $instances);
           break;
       }
 
-    // Move a field to a new type / bundle example continued.
+      // Move a field to a new type / bundle example continued.
       $bundle = $row->getSourceProperty('bundle');
       switch ($bundle) {
         case 'OLD_BUNDLE':
-          $row->setSourceProperty('bundle', 'NEW_BUNDLE'); // Merge fields to person type.
+          $row->setSourceProperty('bundle', 'NEW_BUNDLE');
+          // Merge fields to person type.
           break;
       }
 
@@ -178,7 +181,7 @@ function migration_boilerplate_migrate_prepare_row(Row $row, MigrateSourceInterf
     case 'upgrade_d7_node_NAME':
       $title = $row->getSourceProperty('title');
       if (stripos($title, 'sad') !== FALSE) {
-        // Skip old sad posts
+        // Skip old sad posts.
         throw new MigrateSkipRowException('', TRUE);
       }
       break;
