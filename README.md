@@ -37,3 +37,4 @@ lando drush cim -y
 ```
 
 9. Run ```lando drush ms``` to make sure the configs made it over.
+10. If you want to to remove the red warnings for missing D6 or D7 migrations, add [this code snippet](https://www.drupal.org/project/drupal/issues/2909256#comment-13785246) to your migration_boilerplate.module file and adjust the code.
