@@ -1,4 +1,4 @@
-# Drupal 8 Migration Boilerplate 
+# Drupal 8/9 Migration Boilerplate 
 
 Use this module and the directions below as a 
 starting point to easily get your Drupal 6/7 sites into Drupal 8.
@@ -17,9 +17,9 @@ Drupal 8 sites/default folder.
 6. Run this in your Drupal 8 project root:
 
 ```bash
-lando composer require 'drupal/migrate_plus:^4.2'
-lando composer require 'drupal/migrate_tools:^4.5'
-lando composer require 'drupal/migrate_upgrade:~3.0.0'
+lando composer require 'drupal/migrate_plus:^5.0'
+lando composer require 'drupal/migrate_tools:^5.0'
+lando composer require 'drupal/migrate_upgrade:^3.0'
 ```
 
 7. Enable this module.
