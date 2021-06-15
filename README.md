@@ -7,6 +7,7 @@ starting point to easily get your Drupal 6/7 sites into Drupal 8/9.
 
 1. Setup both your Drupal 6/7 and Drupal 8/9 sites in Lando.
   - If using Drupal 8, configure the site to use Drush 9
+  - If using Drupal 9, pin your drush to 10.3 until [this issue is resolved](https://www.drupal.org/project/migrate_tools/issues/3213947)
 2. Copy the .lando.yml file in this repo to your Drupal 8/9 site root 
 (change the app name)
 3. Export your Drupal 6/7 DB with ```lando db-export dump.sql.gz```
